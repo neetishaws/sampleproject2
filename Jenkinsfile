@@ -9,13 +9,19 @@ node{
         def mvnHome = tool name: 'Maven home', type: 'maven'
         def mvnCMD = "${mvnHome}/bin/mvn"
         sh ("${mvnCMD} clean package")
-      stage ("Docker Image Creation"){
+		
+  stage ("Docker Image Creation"){
 
-        sh 'docker build -t neetishdocker/docker-test:5.0.0 .'
+        sh 'docker build -t neetishdocker/docker-test:1.0.0 .'
         stage("Push To Docker Hub"){
 
         sh("docker login -u neetishdocker -p Brgpk@3217d")
-        sh ("docker push neetishdocker/docker-test:5.0.0")
-  }
-}
-  }
+        sh ("docker push neetishdocker/docker-test:1.0.0")
+
+stage("Deply Image To Tomcat Server "){
+        sh ("docker run -p 8081 -d -name tomcatapp neetishdocker/docker-test:1.0.0")
+   }
+   }
+   }
+   }
+   }
