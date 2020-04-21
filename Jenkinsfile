@@ -19,7 +19,7 @@ node{
         sh ("docker push neetishdocker/docker-test:1.0.0")
 
 stage("Deply Image To Tomcat Server "){
-        sh ("docker run -p 8081 -d -name tomcatapp neetishdocker/docker-test:1.0.0")
+        sh ("docker run -p 8081 -d --name tomcatapp neetishdocker/docker-test:1.0.0")
    }
    }
    }
